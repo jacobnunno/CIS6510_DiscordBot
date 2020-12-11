@@ -17,6 +17,9 @@ for(const file of commandFiles){
     client.commands.set(command.name, command);
 }
 
+//require the tools.js 
+var tools = require("./tools.js");
+
 
 client.once('ready', () => {
     console.log('cybersecurity bot is running');
@@ -38,16 +41,27 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
     console.log(command);
 
+    //switch command to call appropriate functions
     switch(command){
-        case 'ping':
-            message.channel.send('pong!')
-            break;
-        case 'shmblah':
-            message.channel.send('Bear!!')
-            break;
         case 'help':
             client.commands.get('help').execute(message, args);
             break;
+        case 'checklink':
+                console.log(args.length)
+                if(args.length == 1)
+                {
+                    if(tools.validURL(args[1]))
+                    {   
+                        message.channel.send('URL is a valid URL');
+                        client.commands.get('checklink').execute(message, args);
+                    }
+                    else
+                    {
+                        //Giacomo - everything is coming back as invalid URL
+                        message.channel.send('URL is not a valid URL');
+                    }
+                }
+                break;
         default:
     };
 })
