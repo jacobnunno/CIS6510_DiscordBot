@@ -8,18 +8,19 @@ module.exports = {
     name:'checklink',
     description: "Command to check a link provided by a user",
     execute(message, link){
-        message.channel.send('Link found');
+        //message.channel.send('Link found');
         //message.channel.send(link);
         scrapeNortonLinkChecker(message, link);
+        //scrapeURLVoidLinkChecker(message, url)
     }
 }
 
 async function scrapeNortonLinkChecker(message, url)
 {
-    console.log("scrape attempt");
+    const nortonURL = "https://safeweb.norton.com/report/show?url=" + url.toString();
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto(url);
+    await page.goto(nortonURL);
 
     const [nortonRating] = await page.$x('//*[@id="bodyContent"]/div/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/b');
     const txt = await nortonRating.getProperty('textContent');
@@ -29,9 +30,25 @@ async function scrapeNortonLinkChecker(message, url)
     const txt2 = await nortonCommunityRating.getProperty('textContent');
     const nortonCommunityRatingTxt = await txt2.jsonValue();
 
-    //console.log({nortonRatingTxt, nortonCommunityRatingTxt});
+    browser.close();
+    message.channel.send("Norton Report:\n" + "\tNorton Rating: " + nortonRatingTxt + "\n" + "\tNorton Community Rating: " + nortonCommunityRatingTxt);
+}
+
+async function scrapeURLVoidLinkChecker(message, url)
+{
+    console.log("scrape URLVoid");
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
+
+    //TODO
+    // shave the url so that I can input it straight into the urlvoid url
+    //  like this: https://www.urlvoid.com/scan/google.com/
+    //set up the proper elements to grab
+
+    const [URLVoidRating] = await page.$x('//*[@id="bodyContent"]/div/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/b');
+    const txt = await URLVoidRating.getProperty('textContent');
+    const URLVoidRatingTxt = await txt.jsonValue();
 
     browser.close();
-    var returnArray = [nortonRatingTxt.toString(), nortonCommunityRatingTxt.toString()];
-    message.channel.send(returnArray);
 }
