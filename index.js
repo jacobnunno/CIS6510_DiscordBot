@@ -28,9 +28,9 @@ client.once('ready', () => {
 client.on('message', message => {
 
     //if the message doesn't start with the prefix, and if the message is not from the bot
+    //active message checker for links
     if(!message.content.startsWith(prefix) && !message.author.bot)
     {
-        //active message checker for links
         console.log(message.content);
         const wordsInMessage = message.content.slice(prefix.length).split(/ +/);
 
@@ -49,9 +49,9 @@ client.on('message', message => {
         }
     }
     //if the message starts with the prefix and the message is not from the bot
+    //This is where commands are run
     else if(message.content.startsWith(prefix) && !message.author.bot)
     {    
-        //if the message contains the prefix
         //show in console the message that was sent
         console.log(message.content);
         //splicing off the second part of the command
