@@ -37,7 +37,7 @@ client.on('message', message => {
     
     //show in console the args list
     console.log(args);
-    //stores the first element of the array into command and makes it all lower case
+    //pop off the first element of the array into command and makes it all lower case
     const command = args.shift().toLowerCase();
     console.log(command);
 
@@ -47,17 +47,16 @@ client.on('message', message => {
             client.commands.get('help').execute(message, args);
             break;
         case 'checklink':
-                console.log(args.length)
+                console.log(args[0])
                 if(args.length == 1)
                 {
-                    if(tools.validURL(args[1]))
+                    //we popped off the first element so now args0 is the link 
+                    if(tools.validURL(args[0]))
                     {   
-                        message.channel.send('URL is a valid URL');
                         client.commands.get('checklink').execute(message, args);
                     }
                     else
                     {
-                        //Giacomo - everything is coming back as invalid URL
                         message.channel.send('URL is not a valid URL');
                     }
                 }
