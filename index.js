@@ -40,11 +40,8 @@ client.on('message', message => {
         {
             if(tools.validURL(wordsInMessage[i]))
             {   
-                message.channel.send('Found a link');
-            }
-            else
-            {
-                message.channel.send('no link found');
+                //found a link
+                client.commands.get('checklink').execute(message, wordsInMessage[i]);
             }
         }
     }
@@ -75,7 +72,7 @@ client.on('message', message => {
                         //we popped off the first element so now args0 is the link 
                         if(tools.validURL(args[0]))
                         {   
-                            client.commands.get('checklink').execute(message, args);
+                            client.commands.get('checklink').execute(message, args[0]);
                         }
                         else
                         {
