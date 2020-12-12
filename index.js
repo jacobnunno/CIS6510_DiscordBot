@@ -1,6 +1,8 @@
 //CyberSecurity Bot
 //discord bot code based off of youtube videos by: CodeLyon on youtube.
 //startign video can be found here: https://www.youtube.com/watch?v=j_sD9udZnCk&ab_channel=CodeLyon
+// You need to install puppeteer
+//      npm install puppeteer
 //open command prompt in the appropriate folder, type command:
 //  node .
 
