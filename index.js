@@ -8,7 +8,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = '-';
+const prefix = '-'; 
 
 //set up the different commands/function collection
 const fs = require('fs');
@@ -22,6 +22,9 @@ for(const file of commandFiles){
 //require the tools.js 
 var tools = require("./tools.js");
 
+//global for active comment checker
+var activechecker = true;
+
 
 client.once('ready', () => {
     console.log('cybersecurity bot is running');
@@ -31,7 +34,8 @@ client.on('message', message => {
 
     //if the message doesn't start with the prefix, and if the message is not from the bot
     //active message checker for links
-    if(!message.content.startsWith(prefix) && !message.author.bot)
+
+    if(!message.content.startsWith(prefix) && !message.author.bot && activechecker)
     {
         //console.log(message.content);
         const wordsInMessage = message.content.split(" ");
@@ -67,6 +71,15 @@ client.on('message', message => {
             case 'help':
                 client.commands.get('help').execute(message, args);
                 break;
+            case 'about':
+                client.commands.get('about').execute(message, args);
+                break;
+            case 'acoff':
+                    activechecker = false; 
+                    break;
+            case 'acon':
+                    activechecker = true; 
+                    break;
             case 'checklink':
                     console.log(args[0])
                     if(args.length == 1)

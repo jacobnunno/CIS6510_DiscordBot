@@ -17,6 +17,7 @@ module.exports = {
 
 async function scrapeNortonLinkChecker(message, url)
 {
+    
     const nortonURL = "https://safeweb.norton.com/report/show?url=" + url.toString();
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
