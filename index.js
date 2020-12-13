@@ -33,16 +33,16 @@ client.on('message', message => {
     //active message checker for links
     if(!message.content.startsWith(prefix) && !message.author.bot)
     {
-        console.log(message.content);
-        const wordsInMessage = message.content.slice(prefix.length).split(/ +/);
-
+        //console.log(message.content);
+        const wordsInMessage = message.content.split(" ");
         //loop through words and check if any of the words have a link
         var i;
-        for(i = 0; i< wordsInMessage.length; i++)
+        for(i = 0; i < wordsInMessage.length; i++)
         {
             if(tools.validURL(wordsInMessage[i]))
             {   
                 //found a link
+                message.channel.send('Found a link! Running diagnostics now');
                 client.commands.get('checklink').execute(message, wordsInMessage[i]);
             }
         }

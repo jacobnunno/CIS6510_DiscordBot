@@ -41,7 +41,7 @@ async function scrapeURLVoidLinkChecker(message, url)
     const page = await browser.newPage();
     await page.goto(url);
 
-    //TODO
+    //TODO GIACOMO
     // shave the url so that I can input it straight into the urlvoid url
     //  like this: https://www.urlvoid.com/scan/google.com/
     //set up the proper elements to grab
