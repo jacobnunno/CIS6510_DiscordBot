@@ -1,12 +1,14 @@
 //CyberSecurity Bot
 //discord bot code based off of youtube videos by: CodeLyon on youtube.
-//startign video can be found here: https://www.youtube.com/watch?v=j_sD9udZnCk&ab_channel=CodeLyon
+//starting video can be found here: https://www.youtube.com/watch?v=j_sD9udZnCk&ab_channel=CodeLyon
+// You need to install puppeteer
+//      npm install puppeteer
 //open command prompt in the appropriate folder, type command:
 //  node .
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = '-';
+const prefix = '-'; 
 
 //set up the different commands/function collection
 const fs = require('fs');
@@ -20,6 +22,9 @@ for(const file of commandFiles){
 //require the tools.js 
 var tools = require("./tools.js");
 
+//global for active comment checker
+var activechecker = true;
+
 
 client.once('ready', () => {
     console.log('cybersecurity bot is running');
@@ -29,22 +34,20 @@ client.on('message', message => {
 
     //if the message doesn't start with the prefix, and if the message is not from the bot
     //active message checker for links
-    if(!message.content.startsWith(prefix) && !message.author.bot)
-    {
-        console.log(message.content);
-        const wordsInMessage = message.content.slice(prefix.length).split(/ +/);
 
+    if(!message.content.startsWith(prefix) && !message.author.bot && activechecker)
+    {
+        //console.log(message.content);
+        const wordsInMessage = message.content.split(" ");
         //loop through words and check if any of the words have a link
         var i;
-        for(i = 0; i< wordsInMessage.length; i++)
+        for(i = 0; i < wordsInMessage.length; i++)
         {
             if(tools.validURL(wordsInMessage[i]))
             {   
-                message.channel.send('Found a link');
-            }
-            else
-            {
-                message.channel.send('no link found');
+                //found a link
+                message.channel.send('Found a link! Running diagnostics now');
+                client.commands.get('checklink').execute(message, wordsInMessage[i]);
             }
         }
     }
@@ -68,6 +71,18 @@ client.on('message', message => {
             case 'help':
                 client.commands.get('help').execute(message, args);
                 break;
+            case 'about':
+                client.commands.get('about').execute(message, args);
+                break;
+            case 'acoff':
+                    activechecker = false; 
+                    message.channel.send('Active Message Checking is now off');
+                    break;
+            case 'acon':
+                    activechecker = true; 
+                    message.channel.send('Active Message Checking is now on');
+                    
+                    break;
             case 'checklink':
                     console.log(args[0])
                     if(args.length == 1)
@@ -75,7 +90,7 @@ client.on('message', message => {
                         //we popped off the first element so now args0 is the link 
                         if(tools.validURL(args[0]))
                         {   
-                            client.commands.get('checklink').execute(message, args);
+                            client.commands.get('checklink').execute(message, args[0]);
                         }
                         else
                         {
