@@ -76,9 +76,12 @@ client.on('message', message => {
                 break;
             case 'acoff':
                     activechecker = false; 
+                    message.channel.send('Active Message Checking is now off');
                     break;
             case 'acon':
                     activechecker = true; 
+                    message.channel.send('Active Message Checking is now on');
+                    
                     break;
             case 'checklink':
                     console.log(args[0])
