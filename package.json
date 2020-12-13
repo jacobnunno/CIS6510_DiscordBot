@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clamscan": "^1.3.3",
     "discord.js": "^12.5.1",
     "puppeteer": "^5.5.0"
   }

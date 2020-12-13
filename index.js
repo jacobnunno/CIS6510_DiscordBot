@@ -3,6 +3,11 @@
 //starting video can be found here: https://www.youtube.com/watch?v=j_sD9udZnCk&ab_channel=CodeLyon
 // You need to install puppeteer
 //      npm install puppeteer
+//For file scanner
+    //You need to install clamscan
+    //      npm install clamscan
+    //You need to install request
+    //You need to install fs
 //open command prompt in the appropriate folder, type command:
 //  node .
 
@@ -101,6 +106,23 @@ client.on('message', message => {
             default:
                 message.channel.send('That is not a valid command, try -help to view valid commands');
         };
+    }
+})
+
+
+// if file is sent
+client.on(`message`, function(message)
+{
+    if(message.attachments.first())
+    {//checks if an attachment is sent
+        message.channel.send('file found');
+        download(msg.attachments.first().url);
+        //https://stackoverflow.com/questions/51550993/download-file-to-local-computer-sent-attatched-to-message-discord
+        //
+        /*
+        if(msg.attachments.first().filename === `png`){//Download only png (customize this)
+            download(msg.attachments.first().url);//Function I will show later
+        }*/
     }
 })
 

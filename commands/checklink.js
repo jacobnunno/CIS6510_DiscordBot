@@ -1,6 +1,5 @@
 //check link function
 
-//var webscraper = require("./../webscraper.js");
 //require puppeteer to be able to scrape the website
 const puppeteer = require('puppeteer');
 
