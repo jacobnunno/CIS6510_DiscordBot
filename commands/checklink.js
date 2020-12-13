@@ -11,7 +11,7 @@ module.exports = {
         //message.channel.send('Link found');
         //message.channel.send(link);
         scrapeNortonLinkChecker(message, link);
-        //scrapeURLVoidLinkChecker(message, url)
+        scrapeTransparencyReportLinkChecker(message, link)
     }
 }
 
@@ -22,6 +22,7 @@ async function scrapeNortonLinkChecker(message, url)
     const page = await browser.newPage();
     await page.goto(nortonURL);
 
+    //grab the correct element
     const [nortonRating] = await page.$x('//*[@id="bodyContent"]/div/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/b');
     const txt = await nortonRating.getProperty('textContent');
     const nortonRatingTxt = await txt.jsonValue();
@@ -34,21 +35,23 @@ async function scrapeNortonLinkChecker(message, url)
     message.channel.send("Norton Report:\n" + "\tNorton Rating: " + nortonRatingTxt + "\n" + "\tNorton Community Rating: " + nortonCommunityRatingTxt);
 }
 
-async function scrapeURLVoidLinkChecker(message, url)
+async function scrapeTransparencyReportLinkChecker(message, url)
 {
-    console.log("scrape URLVoid");
+    //site with malware for testing:
+    // malware.testing.google.test
+    var trimmedURL = url.replace(/\//g, "%2F");
+
+    const TrURL = "https://transparencyreport.google.com/safe-browsing/search?url=" + trimmedURL.toString();
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto(url);
+    await page.goto(TrURL);
 
-    //TODO GIACOMO
-    // shave the url so that I can input it straight into the urlvoid url
-    //  like this: https://www.urlvoid.com/scan/google.com/
-    //set up the proper elements to grab
-
-    const [URLVoidRating] = await page.$x('//*[@id="bodyContent"]/div/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/b');
-    const txt = await URLVoidRating.getProperty('textContent');
-    const URLVoidRatingTxt = await txt.jsonValue();
+    //grab the correct element
+    const [TransparencyReportRating] = await page.$x('//*[@id="scrolling-element"]/safe-browsing-report/ng-component/site-status-result/report-section/section/div/data-tile/div[2]/span');
+    const txt = await TransparencyReportRating.getProperty('textContent');
+    const TransparencyReportRatingTxt = await txt.jsonValue();
 
     browser.close();
+    
+    message.channel.send("Google Transparency Report Report:\n" + "\t" + TransparencyReportRatingTxt);
 }
