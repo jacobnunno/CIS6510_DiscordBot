@@ -69,7 +69,7 @@ async function scrapeTransparencyReportLinkChecker(message, url)
         await page.goto(TrURL);
 
         //grab the correct element
-        const [TransparencyReportRating] = await page.$x('//*[@id="scrolling-element"]/safe-browsing-report/ng-component/site-status-result/report-section/section/div/data-tile/div[2]/span');
+        const [TransparencyReportRating] = await page.$x('/html/body/app/site-layout/mat-sidenav-container/mat-sidenav-content/safe-browsing-report/ng-component/site-status-result/report-section/section/div/data-tile/div[2]/span');
         const txt = await TransparencyReportRating.getProperty('textContent');
         const TransparencyReportRatingTxt = await txt.jsonValue();
 
