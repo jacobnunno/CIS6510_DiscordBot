@@ -1,10 +1,7 @@
-//CyberSecurity Bot
-//discord bot code based off of youtube videos by: CodeLyon on youtube.
-//starting video can be found here: https://www.youtube.com/watch?v=j_sD9udZnCk&ab_channel=CodeLyon
-// You need to install puppeteer
-//      npm install puppeteer
-//open command prompt in the appropriate folder, type command:
-//  node .
+//main controller for the bot
+//listens for two types of messages:
+//       a message with the prefix -
+//       any message with a link in it
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -28,14 +25,13 @@ var tools = require("./tools.js");
 //global for active comment checker
 var activechecker = true;
 
-
+//reply to confirm that the bot is running
 client.once('ready', () => {
     console.log('cybersecurity bot is running');
 })
 
 client.on('message', message => {
-
-    //if the message doesn't start with the prefix, and if the message is not from the bot
+    //if the message doesn't start with the prefix, and if the message is not from the bot and if the activechecker flag is set to true
     //active message checker for links
 
     if(!message.content.startsWith(prefix) && !message.author.bot && activechecker)
@@ -50,6 +46,7 @@ client.on('message', message => {
             {   
                 //found a link
                 message.channel.send('Found a link! Running diagnostics now');
+                //run diagnostics on the link
                 client.commands.get('checklink').execute(message, wordsInMessage[i]);
             }
         }
@@ -58,16 +55,11 @@ client.on('message', message => {
     //This is where commands are run
     else if(message.content.startsWith(prefix) && !message.author.bot)
     {    
-        //show in console the message that was sent
-        //console.log(message.content);
         //splicing off the second part of the command
         const args = message.content.slice(prefix.length).split(/ +/);
         
-        //show in console the args list
-        //console.log(args);
-        //pop off the first element of the array into command and makes it all lower case
+        //pop off the first element of the array into command and make it all lower case
         const command = args.shift().toLowerCase();
-        //console.log(command);
 
         //switch command to call appropriate functions according to command used
         switch(command){
@@ -87,7 +79,6 @@ client.on('message', message => {
                     
                     break;
             case 'checklink':
-                    //console.log(args[0])
                     if(args.length == 1)
                     {
                         //we popped off the first element so now args0 is the link 
