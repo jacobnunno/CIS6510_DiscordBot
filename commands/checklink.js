@@ -38,6 +38,11 @@ async function scrapeNortonLinkChecker(message, url)
 
     browser.close();
     message.channel.send("Norton Report:\n" + "\tNorton Rating: " + nortonRatingTxt + "\n" + "\tNorton Community Rating: " + nortonCommunityRatingTxt);
+    //delete the message if Norton finds that the message contains an unsafe link
+    if (nortonRatingTxt == "WARNING") {
+        message.delete()
+        .then(message.channel.send('Deleted message from because it contained an unsafe link'));
+     }
 }
 
 async function scrapeTransparencyReportLinkChecker(message, url)
@@ -63,4 +68,8 @@ async function scrapeTransparencyReportLinkChecker(message, url)
     browser.close();
     
     message.channel.send("Google Transparency Report:\n" + "\t" + TransparencyReportRatingTxt);
+    if (TransparencyReportRatingTxt == "Some pages on this site are unsafe") {
+        message.delete()
+        .then(message.channel.send('Deleted message from because it contained an unsafe link'));
+     }
 }
