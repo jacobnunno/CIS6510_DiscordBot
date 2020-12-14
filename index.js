@@ -11,7 +11,7 @@ const client = new Discord.Client();
 const prefix = '-'; 
 
 //Paste your token in here
-const token = 'Nzg3MDA2MDQ4ODU4ODAwMTM4.X9Oqfw.gb5qbB7P5Nu_M3seJtQKxdjBKpg';
+const token = 'YOURTOKENHERE';
 
 //set up the different commands/function collection
 const fs = require('fs');
