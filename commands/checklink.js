@@ -19,7 +19,11 @@ async function scrapeNortonLinkChecker(message, url)
 {
 
     const nortonURL = "https://safeweb.norton.com/report/show?url=" + url.toString();
-    const browser = await puppeteer.launch();
+    //had to add the "args:[--no-sandbox"]" so that it would work on the server.
+    //seems to also work on my windows machine too so commiting it to master
+    const browser = await puppeteer.launch({
+        args: ["--no-sandbox"]
+    });
     const page = await browser.newPage();
     await page.goto(nortonURL);
 
@@ -34,6 +38,11 @@ async function scrapeNortonLinkChecker(message, url)
 
     browser.close();
     message.channel.send("Norton Report:\n" + "\tNorton Rating: " + nortonRatingTxt + "\n" + "\tNorton Community Rating: " + nortonCommunityRatingTxt);
+    //delete the message if Norton finds that the message contains an unsafe link
+    if (nortonRatingTxt == "WARNING") {
+        message.delete()
+        .then(message.channel.send('Deleted message from because it contained an unsafe link'));
+     }
 }
 
 async function scrapeTransparencyReportLinkChecker(message, url)
@@ -43,7 +52,11 @@ async function scrapeTransparencyReportLinkChecker(message, url)
     var trimmedURL = url.replace(/\//g, "%2F");
 
     const TrURL = "https://transparencyreport.google.com/safe-browsing/search?url=" + trimmedURL.toString();
-    const browser = await puppeteer.launch();
+    //had to add the "args:[--no-sandbox"]" so that it would work on the server.
+    //seems to also work on my windows machine too so commiting it to master
+    const browser = await puppeteer.launch({
+        args: ["--no-sandbox"]
+    });
     const page = await browser.newPage();
     await page.goto(TrURL);
 
@@ -55,4 +68,8 @@ async function scrapeTransparencyReportLinkChecker(message, url)
     browser.close();
     
     message.channel.send("Google Transparency Report:\n" + "\t" + TransparencyReportRatingTxt);
+    if (TransparencyReportRatingTxt == "Some pages on this site are unsafe") {
+        message.delete()
+        .then(message.channel.send('Deleted message from because it contained an unsafe link'));
+     }
 }
