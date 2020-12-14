@@ -59,15 +59,15 @@ client.on('message', message => {
     else if(message.content.startsWith(prefix) && !message.author.bot)
     {    
         //show in console the message that was sent
-        console.log(message.content);
+        //console.log(message.content);
         //splicing off the second part of the command
         const args = message.content.slice(prefix.length).split(/ +/);
         
         //show in console the args list
-        console.log(args);
+        //console.log(args);
         //pop off the first element of the array into command and makes it all lower case
         const command = args.shift().toLowerCase();
-        console.log(command);
+        //console.log(command);
 
         //switch command to call appropriate functions according to command used
         switch(command){
@@ -87,7 +87,7 @@ client.on('message', message => {
                     
                     break;
             case 'checklink':
-                    console.log(args[0])
+                    //console.log(args[0])
                     if(args.length == 1)
                     {
                         //we popped off the first element so now args0 is the link 
