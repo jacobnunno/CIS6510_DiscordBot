@@ -122,13 +122,21 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 
 Commands:
+
     -about
+    
          Command to give you information about the purpose of the bot
+         
     -acoff
+    
          Command to turn off the active message scanner for links
+         
     -acon
+    
          Command to turn on the active message scanner for links
+         
     -checklink link
+    
          Command to check a link that you specify
 
 <!-- CONTACT -->
