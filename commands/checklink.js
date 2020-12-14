@@ -19,7 +19,11 @@ async function scrapeNortonLinkChecker(message, url)
 {
 
     const nortonURL = "https://safeweb.norton.com/report/show?url=" + url.toString();
-    const browser = await puppeteer.launch();
+    //had to add the "args:[--no-sandbox"]" so that it would work on the server.
+    //seems to also work on my windows machine too so commiting it to master
+    const browser = await puppeteer.launch({
+        args: ["--no-sandbox"]
+    });
     const page = await browser.newPage();
     await page.goto(nortonURL);
 
@@ -43,7 +47,11 @@ async function scrapeTransparencyReportLinkChecker(message, url)
     var trimmedURL = url.replace(/\//g, "%2F");
 
     const TrURL = "https://transparencyreport.google.com/safe-browsing/search?url=" + trimmedURL.toString();
-    const browser = await puppeteer.launch();
+    //had to add the "args:[--no-sandbox"]" so that it would work on the server.
+    //seems to also work on my windows machine too so commiting it to master
+    const browser = await puppeteer.launch({
+        args: ["--no-sandbox"]
+    });
     const page = await browser.newPage();
     await page.goto(TrURL);
 
