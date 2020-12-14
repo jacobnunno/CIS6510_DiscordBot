@@ -116,7 +116,12 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    cybersecurity bot is running
    ```
-
+   
+14. To set up your bot on a server, follow the steps in this guide:
+   ```sh
+   https://www.writebots.com/discord-bot-hosting/
+   ```
+   
 <!-- USAGE EXAMPLES -->
 ## Usage
 
