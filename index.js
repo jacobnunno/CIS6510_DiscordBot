@@ -8,7 +8,7 @@ const client = new Discord.Client();
 const prefix = '-'; 
 
 //Paste your token in here
-const token = 'Nzg3MDA2MDQ4ODU4ODAwMTM4.X9Oqfw.z39PPJu7BXSEZ0w_O5sXT-tTqVA';
+const token = 'YOURTOKENHERE';
 
 //set up the different commands/function collection
 const fs = require('fs');
