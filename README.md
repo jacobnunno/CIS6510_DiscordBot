@@ -6,7 +6,7 @@
   <h3 align="center">Cybersecurity Discord Moderator Bot</h3>
 
   <p align="center">
-    A bot that will gelp keep your discord community safe!!
+    A bot that will help keep your discord community safe!!
   </p>
 </p>
 <br />
@@ -54,18 +54,17 @@ Here's why:
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
-
+* [NodeJS](https://getbootstrap.com)
+* [NPM](https://www.npmjs.com/)
+* [Discord.js](https://discord.js.org/#/)
+* [Puppeteer](https://www.npmjs.com/package/puppeteer)
+* [vultr](https://my.vultr.com/)
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Here is a very useful youtube video on how to set up a simple discord bot: https://www.youtube.com/watch?v=j_sD9udZnCk&ab_channel=CodeLyon
 
 ### Prerequisites
 
