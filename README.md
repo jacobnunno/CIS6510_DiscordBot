@@ -135,7 +135,7 @@ Commands:
     
          Command to turn on the active message scanner for links
          
-    -checklink link
+    -checklink ***link***
     
          Command to check a link that you specify
 
