@@ -42,8 +42,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Discord has become a very popular place for large communities to gather. Thousands of people in a server with little to no moderation is a recipe for disaster. This bot will run in the background of your server 24/7 and remove links that it finds to be malicious.
 
 Here's why:
@@ -76,21 +74,48 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repository
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/jacobnunno/CIS6510_DiscordBot
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
+4. Create an application in discord
+   ```sh
+   www.discord.com/developers/applications
+   ```
+5. Change your application to a bot application by selecting your new application you just made, then clicking on the bot tab. Then convert the application to a bot.
+
+6. Give your application every persmission possible. Go to the link below and check every persmission.
+   ```sh
+   https://discordapi.com/permissions.html
+   ```
+6. Copy the Client ID from your "General Information Page" of your application and input into the permissions website above. 
+
+7. Click the the link that discordapi.com/permissions generates.
+
+8. Add the bot to your server.
+
+9. Go back to www.discord.com/developers/applications, select your application and then move to the "Bot" tab.
+
+10. Copy the "Token"(don't give anyone this token because if you do they'll be able to take control of your bot)
+
+11. Go to index.js and paste the token in the variable "token"
+   ```sh
+   const token = '***TOKEN***';
+   ```
+   
+12. Write this command in the command prompt to start the bot!
+   ```sh
+   node .
    ```
 
-
+13. Your bot should be up and running! You should get the following message in your command prompt and your bot on discord should be online.
+   ```sh
+   cybersecurity bot is running
+   ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
