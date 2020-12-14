@@ -8,8 +8,7 @@ module.exports = {
     name:'checklink',
     description: "Command to check a link provided by a user",
     execute(message, link){
-        //message.channel.send('Link found');
-        //message.channel.send(link);
+        //call the functions to check the links
         scrapeNortonLinkChecker(message, link);
         scrapeTransparencyReportLinkChecker(message, link)
     }
@@ -24,7 +23,8 @@ async function scrapeNortonLinkChecker(message, url)
     const browser = await puppeteer.launch({
         args: ["--no-sandbox"]
     });
-
+    
+    //try and catch for if the website doesn't load properly
     try{
         const page = await browser.newPage();
         await page.goto(nortonURL);
