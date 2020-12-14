@@ -85,7 +85,7 @@ async function scrapeTransparencyReportLinkChecker(message, url)
         }
     } catch(err){
         console.log(err);
-        message.channel.send('There was an error getting Google Transparency Report. Please try again');
+        message.channel.send('There was an error getting Google Transparency Report, the website may be malfunctioning. Please try again');
     } finally{
         await browser.close();
     }
