@@ -54,6 +54,9 @@ Here's why:
 * [Puppeteer](https://www.npmjs.com/package/puppeteer)
 * [vultr](https://my.vultr.com/)
 
+With tools:
+* [Norton Safe Web](https://safeweb.norton.com/)
+* [Google Transparency Report](https://transparencyreport.google.com/safe-browsing/search?hl=en)
 
 <!-- GETTING STARTED -->
 ## Getting Started
