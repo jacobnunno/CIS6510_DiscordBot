@@ -8,6 +8,9 @@
   <p align="center">
     A bot that will help keep your discord community safe!!
   </p>
+  <p align="center">
+     https://github.com/jacobnunno/CIS6510_DiscordBot
+  </p>
 </p>
 <br />
 
