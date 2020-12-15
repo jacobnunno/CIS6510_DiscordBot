@@ -70,13 +70,22 @@ client.on('message', message => {
                 client.commands.get('about').execute(message, args);
                 break;
             case 'acoff':
-                    activechecker = false; 
-                    message.channel.send('Active Message Checking is now off');
+                    if(message.member.hasPermission('ADMINISTRATOR')){
+                        activechecker = false; 
+                        message.channel.send('Active Message Checking is now off');
+                    }
+                    else{
+                        message.channel.send('You do no have permission to use that command');
+                    }
                     break;
             case 'acon':
-                    activechecker = true; 
-                    message.channel.send('Active Message Checking is now on');
-                    
+                    if(message.member.hasPermission('ADMINISTRATOR')){
+                        activechecker = true; 
+                        message.channel.send('Active Message Checking is now on');
+                    }
+                    else{
+                        message.channel.send('You do no have permission to use that command');
+                    }
                     break;
             case 'checklink':
                     if(args.length == 1)
