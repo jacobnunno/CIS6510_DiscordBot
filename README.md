@@ -103,7 +103,7 @@ This is an example of how to list things you need to use the software and how to
 
 11. Go to index.js and paste the token in the variable "token"
    ```sh
-   const token = 'YOUTOKENHERE';
+   const token = 'YOURTOKENHERE';
    ```
    
 12. Write this command in the command prompt to start the bot!
